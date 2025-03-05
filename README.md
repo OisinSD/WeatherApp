@@ -1,2 +1,2 @@
 # WeatherApp
-Basic weather app, retreving live data from JSON file.
+Basic weather app, retrieving data from JSON file.
