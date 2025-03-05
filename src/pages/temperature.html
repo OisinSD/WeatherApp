@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="styleSheet" href="../styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Weather Temperature</title>
+</head>
+<body class="temperatureStyle">
+    <div class="heading">
+        <h1>Temperature Page</h1>
+    </div>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a class="active4" href="temperature.html">Temperature</a></li>
+        <li><a href="humidity.html">Humidity</a></li>
+        <li><a href="uv.html">UV</a></li>
+        <li><a href="wind.html">Wind Speed</a></li>
+    </ul>
+    <div class="search">
+        <p>Temperature: <span id="temperature"></span></p>
+        <input type="button" id="1" value="Celsius"  onclick="javascript:toggle(this);">
+    </div>
+    <div class="search">
+        <!-- <img src="../../assets/Thermometer-icon.png" width="200px"/> -->
+        <i id="tempIcon" class="fa fa-thermometer" style="font-size: 100px"></i>
+    </div>
+    <script src="../script.js"></script>
+</body>
+</html>

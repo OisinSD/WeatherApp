@@ -1,0 +1,77 @@
+.heading {
+    text-align: center;
+}
+.search{
+    margin-top: 20px;
+    text-align: center;
+    /* color: white; */
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+
+  /*each page navBar styling */
+  .active1{
+    color: white;
+    background-color: #111;
+    border: 2px solid cadetblue;
+  }
+  .active2{
+    color: white;
+    background-color: #111;
+    border: 2px solid dimgray;
+  }
+  .active3{
+    color: white;
+    background-color: #111;
+    border: 2px solid darksalmon;
+  }
+  .active4{
+    color: white;
+    background-color: #111;
+    border: 2px solid lightcoral;
+  }
+  .active5{
+    color: white;
+    background-color: #111;
+    border: 2px solid aqua;
+  }
+
+/* Each page body styling */
+  .humidityStyle{
+    background-color: aqua;
+  }
+  .homeStyle{
+    background-color: cadetblue;
+  }
+  .UVstyle{
+    background-color:darksalmon;
+  }
+  .windStyle{
+    background-color: dimgray;
+  }
+  .temperatureStyle{
+    background-color: lightcoral;
+  }
+  
