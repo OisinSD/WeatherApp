@@ -1,20 +1,22 @@
+/** Changes from Celsius to Fahrenheit */
 function toggle(button) {
     let tempElement = document.getElementById("temperature");
     let weatherData = JSON.parse(localStorage.getItem("weatherData"));
 
-    // if (!weatherData || !tempElement) return;
+    if (!weatherData || !tempElement) return;
 
     if (button.value === "Fahrenheit") {
         button.value = "Celsius";
-        tempElement.innerText = weatherData.temperatureCelsius + "°C";
+        let Cel = weatherData.temperatureCelsius;
+        tempElement.innerText = Cel + "°C";
     } else {
         button.value = "Fahrenheit";
         tempElement.innerText = (weatherData.temperatureCelsius * 9/5 + 32).toFixed(1) + "°F";
     }
 }
 
+/** Load stored weather data when the page loads */
 document.addEventListener("DOMContentLoaded", function () {
-    // Load stored weather data when page loads
     let weatherData = JSON.parse(localStorage.getItem("weatherData"));
 
     if (weatherData) {
@@ -23,32 +25,87 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let tempElement = document.getElementById("temperature");
-        let toggleButton = document.getElementById("toggleTemp");
+        let tempIcon = document.getElementById("tempIcon");
 
         if (tempElement) {
-            if (toggleButton && toggleButton.value === "Fahrenheit") {
-                tempElement.innerText = (weatherData.temperatureCelsius * 9/5 + 32).toFixed(1) + "°F";
-            } else {
-                tempElement.innerText = weatherData.temperatureCelsius + "°C";
+            tempElement.innerText = weatherData.temperatureCelsius + "°C";
+
+            // Change temperature icon color based on temperature
+            if (tempIcon) {
+                tempIcon.classList.remove("hot", "cold", "moderate"); // Remove previous classes
+
+                if (weatherData.temperatureCelsius > 20) {
+                    tempIcon.classList.add("hot"); // Red for hot temperatures
+                } else if (weatherData.temperatureCelsius < 10) {
+                    tempIcon.classList.add("cold"); // Blue for cold temperatures
+                } else {
+                    tempIcon.classList.add("moderate"); // Orange for moderate temperatures
+                }
             }
         }
 
-        if (document.getElementById("humidity")) {
-            document.getElementById("humidity").innerText = (weatherData.humidity * 100) + "%";
+        let humidityElement = document.getElementById("humidity");
+        let humidityIcon = document.getElementById("humidityIcon");
+
+        if (humidityElement) {
+            humidityElement.innerText = (weatherData.humidity * 100) + "%";
+
+            if (humidityIcon) {
+                humidityIcon.classList.remove("hot", "moderate", "cold"); // Remove previous classes
+
+                if (weatherData.humidity < 0.5) {
+                    humidityIcon.classList.add("high"); // High humidity (Red)
+                } else if (weatherData.humidity >= 0.5) {
+                    humidityIcon.classList.add("cold"); // Low humidity (Blue)
+                } else {
+                    humidityIcon.classList.add("moderate"); // Moderate humidity (Orange)
+                }
+            }
         }
-        if (document.getElementById("uvIndex")) {
-            document.getElementById("uvIndex").innerText = weatherData.uvIndex;
+        let uvIndexElement = document.getElementById("uvIndex");
+        let uvIcon = document.getElementById("uvIcon");
+
+        if (uvIndexElement) {
+            uvIndexElement.innerText = weatherData.uvIndex;
+
+            if(uvIcon){
+                uvIcon.classList.remove("hot","moderate","cold","high");
+
+                if(weatherData.uvIndex > 10){
+                    uvIcon.classList.add("hot");
+                } else if (weatherData.uvIndex <= 10){
+                    uvIcon.classList.add("cold");
+                }
+            }
         }
-        if (document.getElementById("windSpeed")) {
-            document.getElementById("windSpeed").innerText = weatherData.windSpeed;
+
+        let windSpeedElement = document.getElementById("windSpeed");
+        let windIcon = document.getElementById("windIcon");
+
+        if (windSpeedElement) {
+            let windSpeedValue = parseInt(weatherData.windSpeed, 10); 
+
+            windSpeedElement.innerText = windSpeedValue + "km/h";
+
+            if(windIcon){
+                windIcon.classList.remove("cold", "high","moderate","hot");
+
+                if(windSpeedValue > 20){
+                    windIcon.classList.add("cold");
+                }else if(windSpeedValue <= 20){
+                    windIcon.classList.add("high");
+                }
+            }
         }
+
     } else {
         console.warn("No weather data found in localStorage.");
     }
 });
 
+/** Fetch weather data when the user searches for a city */
 document.getElementById("weatherForm").addEventListener("submit", function (e) { 
-    e.preventDefault(); // Prevents form from reloading the page.
+    e.preventDefault(); // Prevent form reload
 
     let cityInput = document.getElementById("cityInput").value.trim(); // Get user input
 
@@ -71,29 +128,4 @@ document.getElementById("weatherForm").addEventListener("submit", function (e) {
             }
         })
         .catch(error => console.error("Error loading weather data:", error));
-});
-
-
-/** ICON COLOR CHANGE **/
-
-document.addEventListener("DOMContentLoaded", function () {
-    let weatherData = JSON.parse(localStorage.getItem("weatherData"));
-
-    if (weatherData && weatherData.temperatureCelsius) {
-        let temp = weatherData.temperatureCelsius;
-        let icon = document.getElementById("tempIcon");
-
-        if (icon) { // Ensure the element exists before modifying it
-            if (temp > 19) {
-                icon.classList.add("hot");
-                icon.classList.remove("cold", "moderate");
-            } else if (temp < 10) {
-                icon.classList.add("cold");
-                icon.classList.remove("hot", "moderate");
-            } else {
-                icon.classList.add("moderate");
-                icon.classList.remove("hot", "cold");
-            }
-        }
-    }
 });

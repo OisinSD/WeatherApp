@@ -75,3 +75,17 @@ ul {
     background-color: lightcoral;
   }
   
+  /* change in color of icons*/
+.hot {
+    color: red;
+}
+.high{
+    color: lightskyblue;
+}
+.cold {
+    color: darkblue;
+}
+
+.moderate {
+    color: orange;
+}
