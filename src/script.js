@@ -2,9 +2,6 @@
 function toggle(button) {
     let tempElement = document.getElementById("temperature");
     let weatherData = JSON.parse(localStorage.getItem("weatherData"));
-
-    if (!weatherData || !tempElement) return;
-
     if (button.value === "Fahrenheit") {
         button.value = "Celsius";
         let Cel = weatherData.temperatureCelsius;
@@ -15,7 +12,7 @@ function toggle(button) {
     }
 }
 
-/** Load stored weather data when the page loads */
+/** Load stored weather data from localStorage when the new page loads */
 document.addEventListener("DOMContentLoaded", function () {
     let weatherData = JSON.parse(localStorage.getItem("weatherData"));
 

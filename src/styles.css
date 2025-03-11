@@ -89,3 +89,11 @@ ul {
 .moderate {
     color: orange;
 }
+
+.nav-bar {
+  min-width: 450px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+
+}
