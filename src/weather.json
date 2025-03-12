@@ -33,5 +33,12 @@
       "humidity": 0.84,
       "uvIndex": 2,
       "windSpeed": "25km"
+    },
+    {
+      "cityName": "",
+      "temperatureCelsius": 0,
+      "humidity": 0,
+      "uvIndex": 0,
+      "windSpeed": "0km"
     }
   ]

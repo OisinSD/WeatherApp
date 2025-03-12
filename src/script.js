@@ -29,12 +29,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Change temperature icon color based on temperature
             if (tempIcon) {
-                tempIcon.classList.remove("hot", "cold", "moderate"); // Remove previous classes
+                tempIcon.classList.remove("red", "blue", "moderate"); // Remove previous classes
 
                 if (weatherData.temperatureCelsius > 20) {
-                    tempIcon.classList.add("hot"); // Red for hot temperatures
+                    tempIcon.classList.add("red"); // Red for hot temperatures
                 } else if (weatherData.temperatureCelsius < 10) {
-                    tempIcon.classList.add("cold"); // Blue for cold temperatures
+                    tempIcon.classList.add("blue"); // Blue for cold temperatures
                 } else {
                     tempIcon.classList.add("moderate"); // Orange for moderate temperatures
                 }
@@ -48,14 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
             humidityElement.innerText = (weatherData.humidity * 100) + "%";
 
             if (humidityIcon) {
-                humidityIcon.classList.remove("hot", "moderate", "cold"); // Remove previous classes
+                humidityIcon.classList.remove("red", "moderate", "blue"); 
 
                 if (weatherData.humidity < 0.5) {
-                    humidityIcon.classList.add("high"); // High humidity (Red)
+                    humidityIcon.classList.add("red"); 
                 } else if (weatherData.humidity >= 0.5) {
-                    humidityIcon.classList.add("cold"); // Low humidity (Blue)
+                    humidityIcon.classList.add("blue"); 
                 } else {
-                    humidityIcon.classList.add("moderate"); // Moderate humidity (Orange)
+                    humidityIcon.classList.add("moderate");
                 }
             }
         }
@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
             uvIndexElement.innerText = weatherData.uvIndex;
 
             if(uvIcon){
-                uvIcon.classList.remove("hot","moderate","cold","high");
+                uvIcon.classList.remove("red","moderate","blue","high");
 
                 if(weatherData.uvIndex > 10){
-                    uvIcon.classList.add("hot");
+                    uvIcon.classList.add("red");
                 } else if (weatherData.uvIndex <= 10){
-                    uvIcon.classList.add("cold");
+                    uvIcon.classList.add("blue");
                 }
             }
         }
@@ -85,10 +85,10 @@ document.addEventListener("DOMContentLoaded", function () {
             windSpeedElement.innerText = windSpeedValue + "km/h";
 
             if(windIcon){
-                windIcon.classList.remove("cold", "high","moderate","hot");
+                windIcon.classList.remove("blue", "high","moderate","red");
 
                 if(windSpeedValue > 20){
-                    windIcon.classList.add("cold");
+                    windIcon.classList.add("blue");
                 }else if(windSpeedValue <= 20){
                     windIcon.classList.add("high");
                 }
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("weatherForm").addEventListener("submit", function (e) { 
     e.preventDefault(); // Prevent form reload
 
-    let cityInput = document.getElementById("cityInput").value.trim(); // Get user input
+    let cityInput = document.getElementById("cityInput").value; // Get user input
 
     fetch("weather.json")
         .then(response => response.json())
