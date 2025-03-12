@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("weatherForm").addEventListener("submit", function (e) { 
     e.preventDefault(); // Prevent form reload
 
-    let cityInput = document.getElementById("cityInput").value; // Get user input
+    let cityInput = document.getElementById("cityInput").value.trim(); // Get user input
 
     fetch("weather.json")
         .then(response => response.json())
